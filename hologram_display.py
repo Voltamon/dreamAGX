@@ -166,17 +166,19 @@ class HologramDisplay:
         # Position each quadrant from the outer edge toward the center
         rotations = [
             # Bottom: center horizontally, position from bottom edge
-            (90, center_x, offset_y + half_size + gap + quad_h // 2),
+            (180, center_x, offset_y + half_size + gap + quad_h // 2+20, True),
             # Top: center horizontally, position from top edge  
-            (270, center_x, offset_y + half_size - gap - quad_h // 2),
+            (0, center_x, offset_y + half_size - gap - quad_h // 2-20, False),
             # Left: center vertically, position from left edge
-            (180, offset_x + half_size - gap - quad_w // 2, center_y),
+            (90, offset_x -20 + half_size - gap - quad_w // 2, center_y, True),
             # Right: center vertically, position from right edge
-            (0, offset_x + half_size + gap + quad_w // 2, center_y)
+            (90, offset_x + 20 + half_size + gap + quad_w // 2, center_y, False)
         ]
         
-        for rotation, x, y in rotations:
+        for rotation, x, y, flip in rotations:
             rotated = self.create_rotated_image(captured_img, rotation)
+            if flip:
+                rotated = rotated.transpose(Image.FLIP_LEFT_RIGHT)
             photo = ImageTk.PhotoImage(rotated)
             self.photo_cache.append(photo)  # Prevent garbage collection
             self.canvas.create_image(x, y, image=photo, anchor='center')

@@ -31,10 +31,10 @@ class ScreenCapture:
             
             # Option 2: Capture specific area from secondary monitor (currently active)
             self.custom_region = {
-                'left': capture_monitor['left'] + 200,    # Offset from left edge of secondary monitor
-                'top': capture_monitor['top'] + 100,      # Offset from top edge of secondary monitor  
-                'width': 1200,                             # Width of capture area
-                'height': 900                              # Height of capture area
+                'left': capture_monitor['left'] + 210,    # Offset from left edge of secondary monitor
+                'top': capture_monitor['top'] + 110,      # Offset from top edge of secondary monitor  
+                'width': 1300,                             # Width of capture area
+                'height': 1300                              # Height of capture area
             }
             
             self.monitor = capture_monitor
@@ -110,8 +110,8 @@ class ScreenCapture:
         img = img.resize((new_width, new_height), Image.Resampling.LANCZOS)
         
         # Crop to exact square size (centered crop)
-        left = (new_width - target_w) // 1.5
-        top = (new_height - target_h) // 1.5
+        left = (new_width - target_w) //1.5
+        top = (new_height - target_h) //1.5
         right = (left + target_w)//1.5
         bottom = (top + target_h)//1.5
         
