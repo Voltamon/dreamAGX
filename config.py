@@ -32,4 +32,4 @@ BORDER_COLOR = "#323232"
 FRAME_DELAY_MS = 1000 // FPS  # Convert FPS to milliseconds
 
 # Display layout
-CENTER_GAP = 40  # Size of the center square gap in pixels
+CENTER_GAP =165  # Size of the center square gap in pixels
